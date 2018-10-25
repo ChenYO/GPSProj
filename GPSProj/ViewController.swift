@@ -15,6 +15,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var mapView: MKMapView!
     //偵測用戶位置變化
     let locationManager = CLLocationManager()
+    var monitoredRegions: Dictionary<String, NSDate> = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,17 +86,51 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         return circleRenderer
     }
     
+    // 偵測進入區域範圍
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         showAlert("Enter \(region.identifier)")
+        
+        monitoredRegions[region.identifier] = NSDate()
     }
     
+    // 偵測離開區域範圍
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         showAlert("Exit \(region.identifier)")
+        
+        monitoredRegions.removeValue(forKey: region.identifier)
+    }
+    
+    // 更新區域資訊
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        updateRegions()
+    }
+    
+    // 偵測錯誤
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+        print("Monitor Fail: \(error.localizedDescription)")
+    }
+    
+    // 在區域範圍內停留時間夠多，則顯示訊息
+    func updateRegions() {
+        let regionMaxVisiting = 10.0
+        var regionsToDelete: [String] = []
+        
+        for regionIdentifier in monitoredRegions.keys {
+            if NSDate().timeIntervalSince(monitoredRegions[regionIdentifier]! as Date) > regionMaxVisiting {
+                showAlert("Thanks for visiting this place")
+                
+                regionsToDelete.append(regionIdentifier)
+            }
+        }
+        
+        for regionIdentifier in regionsToDelete {
+            monitoredRegions.removeValue(forKey: regionIdentifier)
+        }
     }
     
     func showAlert(_ message : String) {
         let alertMessage = UIAlertController(title: "Message", message: message, preferredStyle: .alert)
-        alertMessage.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alertMessage.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         
         present(alertMessage, animated: true, completion: nil)
     }
