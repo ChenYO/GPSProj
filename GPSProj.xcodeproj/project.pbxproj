@@ -12,6 +12,8 @@
 		76FB5AB821814BB8001FBE51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76FB5AB621814BB8001FBE51 /* Main.storyboard */; };
 		76FB5ABA21814BBA001FBE51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76FB5AB921814BBA001FBE51 /* Assets.xcassets */; };
 		76FB5ABD21814BBA001FBE51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76FB5ABB21814BBA001FBE51 /* LaunchScreen.storyboard */; };
+		76FB5AC621814BFC001FBE51 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76FB5AC521814BFC001FBE51 /* MapKit.framework */; };
+		76FB5AC8218154FF001FBE51 /* America.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 76FB5AC7218154FE001FBE51 /* America.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		76FB5AB921814BBA001FBE51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76FB5ABC21814BBA001FBE51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76FB5ABE21814BBA001FBE51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76FB5AC521814BFC001FBE51 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		76FB5AC7218154FE001FBE51 /* America.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = America.gpx; path = ../../../../Downloads/America.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76FB5AC621814BFC001FBE51 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,7 @@
 			children = (
 				76FB5AB121814BB8001FBE51 /* GPSProj */,
 				76FB5AB021814BB8001FBE51 /* Products */,
+				76FB5AC421814BFC001FBE51 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,8 +66,17 @@
 				76FB5AB921814BBA001FBE51 /* Assets.xcassets */,
 				76FB5ABB21814BBA001FBE51 /* LaunchScreen.storyboard */,
 				76FB5ABE21814BBA001FBE51 /* Info.plist */,
+				76FB5AC7218154FE001FBE51 /* America.gpx */,
 			);
 			path = GPSProj;
+			sourceTree = "<group>";
+		};
+		76FB5AC421814BFC001FBE51 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				76FB5AC521814BFC001FBE51 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +111,11 @@
 				TargetAttributes = {
 					76FB5AAE21814BB8001FBE51 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -124,6 +144,7 @@
 			files = (
 				76FB5ABD21814BBA001FBE51 /* LaunchScreen.storyboard in Resources */,
 				76FB5ABA21814BBA001FBE51 /* Assets.xcassets in Resources */,
+				76FB5AC8218154FF001FBE51 /* America.gpx in Resources */,
 				76FB5AB821814BB8001FBE51 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
